@@ -240,17 +240,19 @@ void TetFileOp2() {
 		writeNewFile << fileData[i] << endl;
 	}
 }
-int TestFibonacci(int index) {
+
+bool TestFibonacci(int index, int &elem) {
 	cout << "index:" << index << "\n";
-	const int fib_size = 100;
-	vector<int> fib_vec(fib_size);
-	fib_vec[0] = 1;
-	fib_vec[1] = 1;
-	for (int i = 2; i < fib_size; i++)
+	int c_1 = 1;
+	int c_2 = 1;
+	elem = c_1;
+	for (int i = 2; i <= index; i++)
 	{
-		fib_vec[i] = fib_vec[i - 1] + fib_vec[i - 2];
+		c_2 = c_1;
+		c_1 = elem;
+		elem = c_1 + c_2;
 	}
-	return fib_vec[index - 1];
+	return true;
 }
 int main() {
 	//TestUserInput();
@@ -270,9 +272,11 @@ int main() {
 	cout << "请输入Fabinacci某个下标:";
 	int inputNum = 0;
 	cin >> inputNum;
+	int elem = 0;
 	if (inputNum >= 1) {
-		int retFibVal = TestFibonacci(inputNum);
-		cout << "Fibonacci第" << inputNum << "的值是:" << retFibVal << endl;
+		bool retFibVal = TestFibonacci(inputNum,elem);
+		cout << "elem = " << elem << "\n";
+		cout << "Fibonacci第" << inputNum << "的值是:" << elem << endl;
 	}
 	else {
 		cout << "输入的值不合法!";
