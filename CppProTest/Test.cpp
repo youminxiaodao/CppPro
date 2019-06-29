@@ -254,6 +254,58 @@ bool TestFibonacci(int index, int &elem) {
 	}
 	return true;
 }
+void display(vector<int> vec) {
+	for (int i = 0; i < vec.size(); i++)
+	{
+		cout << vec[i] << " ";
+	}
+	cout << endl;
+}
+void def_swap(int & param_one, int & param_two) {
+	int temp = param_one;
+	param_one = param_two;
+	param_two = temp;
+} 
+void bouble_sort(vector<int> & vec) {
+	int vec_length = vec.size();
+	for (int i = 0; i < vec_length; i++)
+	{
+		for (int j = i + 1; j < vec_length; j++)
+		{
+			if (vec[i] > vec[j]) {
+				//cout << "vec[" << i << "] = " << vec[i] << ", vec[" << j << "] = " << vec[j] << endl;
+				def_swap(vec[i], vec[j]);
+			}
+		}
+	}
+	display(vec);
+}
+void TestSort() {
+	//测试排序
+	int ia[8] = { 8,34,3,13,1,21,5,2 };
+	vector<int> vec(ia, ia + 8);
+	cout << "排序前:";
+	display(vec);
+	//排序
+	bouble_sort(vec);
+	cout << "排序后:";
+	display(vec);
+}
+void TestReference() {
+	int ival = 1024;
+	cout << "ival = "<<ival<< endl;
+	int *p = &ival;
+	cout << "*p = "<<*p<< endl;
+	int &rval = ival;
+	cout << "&rval = "<<rval<< endl;
+
+}
+void TestNew() {
+	int *pi;
+	pi = new int[1024];
+	cout << "pi = "<<pi<<",*pi = "<<*pi;
+	delete [] pi;
+}
 int main() {
 	//TestUserInput();
 	//TestConst();
@@ -269,18 +321,21 @@ int main() {
 	//TestInput();
 	//TestSum();//1.6
 	//TetFileOp2();//1.7
-	cout << "请输入Fabinacci某个下标:";
-	int inputNum = 0;
-	cin >> inputNum;
+	/*cout << "请输入fabinacci某个下标:";
+	int inputnum = 0;
+	cin >> inputnum;
 	int elem = 0;
-	if (inputNum >= 1) {
-		bool retFibVal = TestFibonacci(inputNum,elem);
+	if (inputnum >= 1) {
+		bool retfibval = testfibonacci(inputnum,elem);
 		cout << "elem = " << elem << "\n";
-		cout << "Fibonacci第" << inputNum << "的值是:" << elem << endl;
+		cout << "fibonacci第" << inputnum << "的值是:" << elem << endl;
 	}
 	else {
 		cout << "输入的值不合法!";
-	}
+	}*/
+	//TestSort();
+	//TestReference();
+	TestNew();
 	//测试
 	return 0;
 }
